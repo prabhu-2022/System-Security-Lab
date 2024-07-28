@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+int main() {
+    pid_t pid = fork();
+    if (pid == 0) {
+        printf("Child process: PID = %d\n", getpid());
+    } else if (pid > 0) {
+        wait(NULL);
+        printf("Parent process: Child process completed\n");
+    } else {
+        perror("fork");
+    }
+    return 0;
+}
