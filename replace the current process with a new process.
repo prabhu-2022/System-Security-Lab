@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+    char *args[] = {"ls", "-l", NULL}; // Arguments for the "ls -l" command
+    execvp("ls", args); // Replace current process with "ls -l" command
+    perror("exec"); // If execvp fails, print an error message
+    return 1; // Return an error code if execvp fails
+}
